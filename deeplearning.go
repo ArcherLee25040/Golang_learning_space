@@ -9,4 +9,7 @@ func main() {
 
 	var floatNum float32 = 12321
 	fmt.Println(floatNum)
+
+	var myString string = "Hello \nworld!"
+	fmt.Println(myString)
 }
