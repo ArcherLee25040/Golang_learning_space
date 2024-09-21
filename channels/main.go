@@ -46,7 +46,12 @@ func Check_Chicken_Prices(websites string, chickenchannel chan string) {
 }
 
 func sendMessage(chickenchannel chan string, tofuchannel chan string) {
-	fmt.Printf("\nFound a deal on chicken at %s", <-chickenchannel)
-	fmt.Printf("\nFound a deal on chicken at %s", <-tofuchannel)
-
+	// fmt.Printf("\nFound a deal on chicken at %s", <-chickenchannel)
+	// fmt.Printf("\nFound a deal on chicken at %s", <-tofuchannel)
+	select {
+	case websites := <-chickenchannel:
+		fmt.Printf("Found deal on chicken at %v\n", websites)
+	case websites := <-tofuchannel:
+		fmt.Printf("Found deal on chicken at %v\n", websites)
+	}
 }
