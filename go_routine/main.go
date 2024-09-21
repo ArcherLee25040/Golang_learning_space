@@ -26,9 +26,19 @@ func main() {
 func dbCall(i int) {
 	var delay float32 = 2000
 	time.Sleep(time.Duration(delay) * time.Millisecond)
-	fmt.Println("The result from the database is:", dbData[i])
-	m.Lock()
-	results = append(results, dbData[i])
-	m.Unlock()
+	save(dbData[i])
+	log()
 	wg.Done()
+}
+
+func save(result string) {
+	m.Lock()
+	results = append(results, result)
+	m.Unlock()
+}
+
+func log() {
+	m.RLock()
+	fmt.Printf("\nThe currrent rusults is %v", results)
+	m.RUnlock()
 }
