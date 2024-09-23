@@ -11,7 +11,7 @@ func main() {
 	fmt.Println(sumSlice[float32](float32Slice))
 }
 
-func sumSlice[T int | float32 | float64](slice []T) T {
+func sumSlice[T any](slice []T) T {
 	var sum T
 	for _, v := range slice {
 		sum += v
